@@ -39,16 +39,31 @@ CI runs the same on every pull request, on the lowest supported WordPress and PH
 
 ## Install on a client site (Bedrock)
 
-Until a plugin is listed, install from its public repository:
+Until a plugin is listed, install the zip from its GitHub release, pinned to a version with a checksum:
 
 ```json
 "repositories": [
-  { "type": "vcs", "url": "https://github.com/shakewellagency/shakewell-<name>", "no-api": true }
+  {
+    "type": "package",
+    "package": {
+      "name": "shakewellagency/shakewell-<name>",
+      "version": "1.0.0",
+      "type": "wordpress-plugin",
+      "dist": {
+        "url": "https://github.com/shakewellagency/shakewell-<name>/releases/download/v1.0.0/shakewell-<name>.zip",
+        "type": "zip",
+        "shasum": "<sha1 of the zip>"
+      },
+      "require": { "composer/installers": "^2.3" }
+    }
+  }
 ],
-"require": { "shakewellagency/shakewell-<name>": "^1.0" }
+"require": { "shakewellagency/shakewell-<name>": "1.0.0" }
 ```
 
-`no-api` makes Composer clone with git, so the build needs no token and hits no API rate limit. Once listed, switch to `wpackagist-plugin/shakewell-<name>` and drop the token.
+Get the checksum with `shasum -a 1 shakewell-<name>.zip`.
+
+Use the zip, not a `vcs` repository. A source install puts tests and repository files under the web root, while the zip leaves them out and includes any Composer libraries the plugin needs. The build needs no GitHub token and makes no GitHub API calls. Once a plugin is listed, switch to `wpackagist-plugin/shakewell-<name>` and drop this entry.
 
 ## Made by Shakewell
 
