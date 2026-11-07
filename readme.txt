@@ -1,5 +1,5 @@
 === Shakewell Plugin Template ===
-Contributors: shakewell
+Contributors: shakewellagency
 Tags: template
 Requires at least: 6.5
 Tested up to: 7.1
@@ -8,7 +8,7 @@ Stable tag: 0.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Starting point for Shakewell WordPress plugins. Replace this line with one sentence of what the plugin does.
+Starting point for Shakewell WordPress plugins. Replace this line with one sentence of what the plugin does, at most 150 characters.
 
 == Description ==
 
