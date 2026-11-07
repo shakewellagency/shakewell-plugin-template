@@ -54,7 +54,7 @@ Until a plugin is listed, install the zip from its GitHub release, pinned to a v
         "type": "zip",
         "shasum": "<sha1 of the zip>"
       },
-      "require": { "composer/installers": "^2.3" }
+      "require": { "php": ">=8.1", "composer/installers": "^2.3" }
     }
   }
 ],
@@ -63,7 +63,11 @@ Until a plugin is listed, install the zip from its GitHub release, pinned to a v
 
 Get the checksum with `shasum -a 1 shakewell-<name>.zip`.
 
-Use the zip, not a `vcs` repository. A source install puts tests and repository files under the web root, while the zip leaves them out and includes any Composer libraries the plugin needs. The build needs no GitHub token and makes no GitHub API calls. Once a plugin is listed, switch to `wpackagist-plugin/shakewell-<name>` and drop this entry.
+Use the zip, not a `vcs` repository. A source install puts tests and repository files under the web root, while the zip leaves them out. The build needs no GitHub token and makes no GitHub API calls. Copy the plugin's PHP requirement into `require`, because Composer doesn't read the plugin's own `composer.json` here.
+
+A plugin with runtime Composer libraries must ship `vendor/` in its zip. The template's release workflow uses `git archive`, which leaves `vendor/` out, so add `composer install --no-dev` and build the zip from `.distignore`, as `shakewell-saml-sso` does.
+
+Once a plugin is listed, switch to `wpackagist-plugin/shakewell-<name>` and drop this entry.
 
 ## Made by Shakewell
 
