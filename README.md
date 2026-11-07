@@ -8,7 +8,7 @@ The starting point for every Shakewell WordPress plugin. Each plugin built from 
 
 - **Small and single-purpose.** Build only what the sites need. Fewer lines means less to attack and less to break.
 - **Generic.** Anything site-specific is a setting, a constant or a filter, never a value in code. The plugin must install from its release zip on a plain WordPress site and do something sensible, or explain in an admin notice or the readme what it needs, before anything is configured.
-- **No client content anywhere.** No client, product, venue, staff or host names, ids, buckets or account numbers in code, comments, tests, fixtures, readmes, changelogs, commit messages, tags or the repository description. Use neutral examples (`book`, `author`, `example.test`). Anything one client needs to switch the plugin on belongs in that client's own documentation, not here.
+- **No client content anywhere.** No client, staff or host names, ids, buckets or account numbers in code, comments, tests, fixtures, readmes, changelogs, commit messages, tags or the repository description. Use neutral examples (`book`, `author`, `example.test`). Anything one client needs to switch the plugin on belongs in that client's own documentation, not here.
 - **No paid dependencies** where it can be avoided. Core WordPress storage first. A plugin that extends ACF or Gravity Forms says so in its readme.
 - **Directory rules from day one** ([guidelines](https://developer.wordpress.org/plugins/wordpress-org/detailed-plugin-guidelines/)): GPL, no tracking or calls home, no locked features, every outside service named in the readme, translatable strings.
 - **Security basics on every action:** capability check, nonce check, sanitise input, escape output (late, at the point of output), prepared SQL, no secrets in options or logs, and `defined( 'ABSPATH' ) || exit;` at the top of every PHP file.
@@ -45,7 +45,7 @@ CI runs the same on every pull request, on the lowest supported WordPress and PH
 2. Build the zip (`git archive`, as the release workflow does), unzip it, and run Plugin Check against that folder as well as the repository, so you test what ships. The zip must hold no tests, lock files, `.github` or other development files.
 3. Tag `vX.Y.Z` and push. The release workflow checks the three versions match and attaches `shakewell-<name>.zip` to a GitHub release.
 
-## Install with Composer (for example on Bedrock)
+## Install with Composer
 
 Until a plugin is listed, install the zip from its GitHub release, pinned to a version with a checksum:
 
