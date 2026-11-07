@@ -1,5 +1,7 @@
 # Shakewell plugin template
 
+> **Made by [Shakewell](https://shakewell.agency).** Free and open source, built and maintained by the Shakewell team.
+
 The starting point for every Shakewell WordPress plugin. Each plugin built from it is free and open source (GPL-2.0-or-later), Shakewell-owned and maintained, and written so it can be listed in the WordPress plugin directory.
 
 ## Rules every plugin follows
@@ -13,7 +15,7 @@ The starting point for every Shakewell WordPress plugin. Each plugin built from 
 
 ## Make a new plugin
 
-1. On GitHub: **Use this template** → `shakewellagency/shakewell-<name>`, private until it is listed.
+1. On GitHub: **Use this template** → `shakewellagency/shakewell-<name>`, public from the start.
 2. Rename, all in one go: `shakewell-plugin-template` → `shakewell-<name>`, `Shakewell\PluginTemplate` → `Shakewell\<Name>`, `shakewell_plugin_template` → `shakewell_<name>`, `Shakewell Plugin Template` → the plugin's name. Rename the main file to `shakewell-<name>.php`.
 3. Write `readme.txt` (description, external services, changelog) and turn on private vulnerability reporting (Settings → Code security).
 
@@ -37,13 +39,23 @@ CI runs the same on every pull request, on the lowest supported WordPress and PH
 
 ## Install on a client site (Bedrock)
 
-Until a plugin is listed, install from the private repository:
+Until a plugin is listed, install from its public repository:
 
 ```json
 "repositories": [
-  { "type": "vcs", "url": "https://github.com/shakewellagency/shakewell-<name>" }
+  { "type": "vcs", "url": "https://github.com/shakewellagency/shakewell-<name>", "no-api": true }
 ],
 "require": { "shakewellagency/shakewell-<name>": "^1.0" }
 ```
 
-The build needs a read-only GitHub token for the repository (`composer config github-oauth.github.com <token>`, stored as a pipeline secret). Once listed, switch to `wpackagist-plugin/shakewell-<name>` and drop the token.
+`no-api` makes Composer clone with git, so the build needs no token and hits no API rate limit. Once listed, switch to `wpackagist-plugin/shakewell-<name>` and drop the token.
+
+## Made by Shakewell
+
+Plugins built from this template join a family of free WordPress plugins from [Shakewell](https://shakewell.agency). Each one does one job, keeps its dependencies small and is released under GPL-2.0-or-later.
+
+Use it, fork it and send fixes. To have it set up on your site, or to have a plugin built, [talk to Shakewell](https://shakewell.agency).
+
+See them all: [Shakewell plugins on GitHub](https://github.com/orgs/shakewellagency/repositories?q=shakewell-).
+
+In a new plugin, change the first sentence of this section to say what the plugin is part of.
